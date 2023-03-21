@@ -1,0 +1,26 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GymTracker</title>
+
+    <script src="https://kit.fontawesome.com/3ff5952e8a.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <a href="/"><h1>GymTracker</h1></a>
+        <p><%= data %></p>
+    </header>
+    <main>
+        <div class="base-container">
+            <h2>Obserwuj swoje postępy!</h2>
+            <div class="buttons">
+                <button onclick="location.href='/rejestracja'" class="register-button" type="button"><i class="fa-regular fa-address-card"></i> Rejestracja</button>
+                <button onclick="location.href='/login'" class="login-button" type="button"><i class="fa-solid fa-right-to-bracket"></i> Zaloguj</button>
+            </div>
+            <img src="/public/images/man.svg" alt="man">      
+        </div>
+    </main>
+</body>
+</html>
