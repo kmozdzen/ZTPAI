@@ -4,23 +4,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GymTracker</title>
+    
+    <!-- styles -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="/public/css/style.css">
+    
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Ubuntu&display=swap" rel="stylesheet">
 
+    <!-- scripts -->
     <script src="https://kit.fontawesome.com/3ff5952e8a.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header>
-        <a href="/"><h1>GymTracker</h1></a>
-        <p><%= data %></p>
-    </header>
-    <main>
-        <div class="base-container">
-            <h2>Obserwuj swoje postępy!</h2>
-            <div class="buttons">
-                <button onclick="location.href='/rejestracja'" class="register-button" type="button"><i class="fa-regular fa-address-card"></i> Rejestracja</button>
-                <button onclick="location.href='/login'" class="login-button" type="button"><i class="fa-solid fa-right-to-bracket"></i> Zaloguj</button>
+    <div class="container-fluid">
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <a class="navbar-brand" href="/"><h1>GymTracker</h1></a>
+            </nav>
+        </header>
+        <main>
+            <div class="base-container">
+                <div class="row ">
+                    <div class="col-lg-6">
+                        <h2>Obserwuj swoje postępy!</h2>
+                        <div class="buttons">
+                            <button onclick="location.href='/rejestracja'" class="btn btn-dark btn-lg log-buttons" type="button"><i class="fa-regular fa-address-card"></i> Rejestracja</button>
+                            <button onclick="location.href='/login'" class="btn btn-outline-light btn-lg log-buttons" type="button"><i class="fa-solid fa-right-to-bracket"></i> Zaloguj</button>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 man-img-container">
+                        <img class="man-img" src="/public/images/man.svg" alt="man">
+                    </div>   
+                </div>
             </div>
-            <img src="/public/images/man.svg" alt="man">      
-        </div>
-    </main>
+        </main>
+    </div>
 </body>
 </html>

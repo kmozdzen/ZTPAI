@@ -1,0 +1,48 @@
+.register-container
+{
+    background-color: #00B6B7;
+    border-radius: 20px;
+
+    text-align: center;
+}
+
+form
+{
+    margin: 50px 100px;
+}
+
+
+.input-group-text
+{
+    background-color: #050D54;
+    border: none;
+    height: 100%;
+    width: 50px;
+}
+
+.input-icons
+{
+    color: #00B6B7;
+    margin: auto;
+    font-size: 1.3rem;
+}
+
+.input-text
+{
+    background-color: #0075AF;
+    border: none;
+
+    height: 50px;
+}
+
+.input-text::placeholder
+{
+    color: white;
+    opacity: 60%;
+}
+
+.log-buttons
+{
+    margin: auto;
+    margin-top: 15px;
+}

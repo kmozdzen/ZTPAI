@@ -1,0 +1,30 @@
+.workout-container
+{
+    background-color: #00B6B7;
+    border-radius: 20px;
+
+    height: 70%;
+    text-align: center;
+}
+
+ul
+{
+    list-style-type: none;
+    padding: 0;
+}
+
+h2
+{
+    margin-bottom: 100px;
+}
+
+h3
+{
+    margin: 0;
+    margin-top: 15px;
+}
+hr
+{
+    width: 70%;
+    border: 1px solid white;
+}

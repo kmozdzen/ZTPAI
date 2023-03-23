@@ -1,0 +1,32 @@
+.exercises-container
+{
+    text-align: center;
+}
+hr
+{
+    width: 100%;
+}
+
+.category
+{
+    background-image: url('../images/full-body.png');
+    width: 250px;
+    height: 250px;
+
+    position: relative;
+    margin-top: 25px;
+}
+
+h3
+{
+    background-color: black;
+    opacity: 60%;
+
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 250px;
+    margin: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
