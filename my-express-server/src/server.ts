@@ -1,4 +1,9 @@
-const express = require('express');
+import express from "express";
+import "reflect-metadata";
+import { AppDataSource } from "./database";
+import { User } from "./entity/User";
+import { UserDetails } from "./entity/UserDetails";
+
 const bodyParser = require("body-parser");
 
 const app = express();
@@ -9,8 +14,26 @@ app.use('/public/', express.static('./public'));
 const port = process.env.port || 3000;
 
 //GET
-app.get('/', (req, res) => {
-  res.render('index', {data: 'data'});
+app.get('/', async (req, res) => {
+   const userRepository = AppDataSource.getRepository(User);
+  // const userDetailsRepository = AppDataSource.getRepository(UserDetails);
+  const allRecords = await userRepository.find();
+
+  // let userDetails : UserDetails = new UserDetails();
+  // userDetails.name = "Jason";
+  // userDetails.surname = "Stachon";
+
+  // const userDetailsInserted = await userDetailsRepository.save(userDetails);
+
+  // let user : User = new User();
+  // user.email = "jason@mail.pl";
+  // user.password = "cat";
+  // user.userDetails = userDetailsInserted;
+
+  // const userInserted = await userRepository.save(user); 
+
+  //res.render('index', {data: 'data'});
+  res.json(allRecords);
 });
 
 app.get('/login', (req, res) => {
@@ -48,7 +71,6 @@ app.post('/register-data', (req, res) => {
 app.get('/cwiczenia/biceps', (req, res) => {
   
 });
-
 
 app.listen(port, () => {
   console.log(`listening on port ${port}`);
