@@ -1,39 +1,39 @@
-import express from "express";
+import express, { Application } from "express";
 import "reflect-metadata";
-import { AppDataSource } from "./database";
-import { User } from "./entity/User";
-import { UserDetails } from "./entity/UserDetails";
+import swaggerUi from "swagger-ui-express";
+import morgan from "morgan";
+import bodyParser from "body-parser";
+import { AppDataSource } from "./config/database";
+import Router from "./routes/Routes";
+import { checkJwt } from "./middleware/extract.JWT"
 
-const bodyParser = require("body-parser");
-
-const app = express();
-app.use(bodyParser.urlencoded({extended: true}));
-app.set('view engine', 'ejs');
-app.use('/public/', express.static('./public'));
 
 const port = process.env.port || 3000;
 
-//GET
+const app: Application = express();
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(bodyParser.json());
+app.use(morgan("tiny"));
+app.set('view engine', 'ejs');
+app.use('/public/', express.static('./public'));
+
+app.use(
+  "/docs",
+  swaggerUi.serve,
+  swaggerUi.setup(undefined, {
+    swaggerOptions: {
+      url: "/swagger.json",
+    },
+  })
+);
+
+app.use(Router);
+
+// //GET
 app.get('/', async (req, res) => {
-   const userRepository = AppDataSource.getRepository(User);
-  // const userDetailsRepository = AppDataSource.getRepository(UserDetails);
-  const allRecords = await userRepository.find();
-
-  // let userDetails : UserDetails = new UserDetails();
-  // userDetails.name = "Jason";
-  // userDetails.surname = "Stachon";
-
-  // const userDetailsInserted = await userDetailsRepository.save(userDetails);
-
-  // let user : User = new User();
-  // user.email = "jason@mail.pl";
-  // user.password = "cat";
-  // user.userDetails = userDetailsInserted;
-
-  // const userInserted = await userRepository.save(user); 
-
-  //res.render('index', {data: 'data'});
-  res.json(allRecords);
+  res.render('index', {data: 'data'});
 });
 
 app.get('/login', (req, res) => {
@@ -44,7 +44,7 @@ app.get('/rejestracja', (req, res) => {
   res.render('register', {data: 'data'});
 });
 
-app.get('/trening', (req, res) => {
+app.get('/trening', checkJwt, (req, res) => {
   res.render('workout', {data: 'data'});
 });
 
@@ -52,7 +52,7 @@ app.get('/cwiczenia', (req, res) => {
   res.render('exercises', {data: 'data'});
 });
 
-app.get('/profil', (req, res) => {
+app.get('/profil', checkJwt, (req, res) => {
   res.render('profile', {data: 'data'});
 });
 
@@ -68,10 +68,11 @@ app.post('/register-data', (req, res) => {
 });
 
 //API
+
 app.get('/cwiczenia/biceps', (req, res) => {
   
 });
 
 app.listen(port, () => {
-  console.log(`listening on port ${port}`);
+  console.log("Server is running on port", port);
 });
