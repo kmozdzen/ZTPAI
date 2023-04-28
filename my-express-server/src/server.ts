@@ -1,6 +1,5 @@
 import express, { Application } from "express";
 import "reflect-metadata";
-import swaggerUi from "swagger-ui-express";
 import morgan from "morgan";
 import bodyParser from "body-parser";
 import { AppDataSource } from "./config/database";
@@ -19,16 +18,6 @@ app.use(morgan("tiny"));
 app.set('view engine', 'ejs');
 app.use('/public/', express.static('./public'));
 
-app.use(
-  "/docs",
-  swaggerUi.serve,
-  swaggerUi.setup(undefined, {
-    swaggerOptions: {
-      url: "/swagger.json",
-    },
-  })
-);
-
 app.use(Router);
 
 // //GET
@@ -44,7 +33,7 @@ app.get('/rejestracja', (req, res) => {
   res.render('register', {data: 'data'});
 });
 
-app.get('/trening', checkJwt, (req, res) => {
+app.get('/trening', (req, res) => {
   res.render('workout', {data: 'data'});
 });
 
@@ -52,7 +41,7 @@ app.get('/cwiczenia', (req, res) => {
   res.render('exercises', {data: 'data'});
 });
 
-app.get('/profil', checkJwt, (req, res) => {
+app.get('/profil', (req, res) => {
   res.render('profile', {data: 'data'});
 });
 

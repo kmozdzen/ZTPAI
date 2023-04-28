@@ -35,3 +35,16 @@ export const getUserByEmail = async (email: string): Promise<User | null> => {
   if (!user) return null;
   return user;
 };
+
+export const updateUser =async (id: number, updatedUser: IUser): Promise<User | null> => {
+  const userRepository = AppDataSource.getRepository(User);
+  const user = await userRepository.findOne({ where: { id: id } });
+  if (!user) return null;
+  user.email = updatedUser.email;
+  return userRepository.save(user);
+}
+
+export const deleteUser = async (id : number) => {
+  const userRepository = AppDataSource.getRepository(User);
+  userRepository.createQueryBuilder().delete().from(User).where({id: id}).execute();
+}

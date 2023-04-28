@@ -33,4 +33,27 @@ router.get("/:id", async (req, res) => {
   }catch{}
 });
 
+router.put("/:id", async (req, res) => {
+  const controller = new UserController();
+  try{
+    const response = await controller.updateUser(req.params.id, {
+      email: String(req.body.email), 
+      password: String(req.body.password)
+    });
+    return res.send(response);
+  }catch(err){
+    console.log(err);
+  }
+});
+
+router.delete("/:id", async (req, res) => {
+  const controller = new UserController();
+  try{
+    const response = await controller.deleteUser(req.params.id);
+    return res.send(response);
+  }catch(err){
+    console.log(err);
+  }
+});
+
 export default router;
