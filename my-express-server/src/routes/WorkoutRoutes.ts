@@ -106,4 +106,73 @@ router.post("/", async (req, res) => {
     }
   });
 
+/**
+   * @swagger
+   * '/workout/{id}':
+   *    put:
+   *      description: Update workout
+   *      tags: [Workout]
+   *      parameters:
+   *      - in: path
+   *        name: id
+   *        description: workout id
+   *        required: true
+   *      requestBody:
+   *        required: true
+   *        content:
+   *          application/json:
+   *            schema:
+   *              $ref: '#components/schemas/Workout'
+   *      responses:
+   *        200:
+   *          description: Success
+   *        404:
+   *          description: Workout not found
+   *        500:
+   *          description: Some server error
+*/
+router.put("/:id", async (req, res) => {
+  const controller = new WorkoutController();
+  try{
+    const response = await controller.updateWorkout(req.params.id, {
+        series: String(req.body.series), 
+        reps: String(req.body.reps),
+        weight: String(req.body.weight), 
+        date: req.body.date
+    });
+    return res.send(response);
+  }catch(err){
+    console.log(err);
+  }
+});
+
+/**
+   * @swagger
+   * '/workout/{id}':
+   *    delete:
+   *      description: Delete workout
+   *      tags: [Workout]
+   *      parameters:
+   *      - in: path
+   *        name: id
+   *        description: workout id
+   *        required: true
+   *      responses:
+   *        200:
+   *          description: Success
+   *        404:
+   *          description: User not found
+   *        500:
+   *          description: Some server error
+*/
+router.delete("/:id", async (req, res) => {
+  const controller = new WorkoutController();
+  try{
+    const response = await controller.deleteWorkout(req.params.id);
+    return res.send(response);
+  }catch(err){
+    console.log(err);
+  }
+});
+
 export default router;
