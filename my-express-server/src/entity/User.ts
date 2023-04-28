@@ -18,6 +18,7 @@ export class User{
 
     @Column()
     password: string;
+    
 
     @OneToOne(() => UserDetails, { cascade: true, eager: true})
     @JoinColumn()
@@ -26,7 +27,7 @@ export class User{
     @ManyToOne(() => Role, (role) => role.users, {onDelete : "CASCADE"})
     role : Role;
 
-    @OneToMany(() => Workout, (workout) => workout.user, {cascade: true, eager: true})
+    @OneToMany(() => Workout, (workout) => workout.user, {cascade: true})
     workouts : Workout[];
 
     @BeforeInsert()

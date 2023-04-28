@@ -1,15 +1,16 @@
-import express, { Application } from "express";
+import express, { Application, Request, Response } from "express";
 import "reflect-metadata";
 import morgan from "morgan";
 import bodyParser from "body-parser";
 import { AppDataSource } from "./config/database";
 import Router from "./routes/Routes";
 import { checkJwt } from "./middleware/extract.JWT"
+import swaggerDocs from "./utils/swagger";
 
 
 const port = process.env.port || 3000;
 
-const app: Application = express();
+const app = express();
 app.use(bodyParser.urlencoded({
   extended: true
 }));
@@ -19,6 +20,7 @@ app.set('view engine', 'ejs');
 app.use('/public/', express.static('./public'));
 
 app.use(Router);
+
 
 // //GET
 app.get('/', async (req, res) => {
@@ -64,4 +66,5 @@ app.get('/cwiczenia/biceps', (req, res) => {
 
 app.listen(port, () => {
   console.log("Server is running on port", port);
+  swaggerDocs(app, Number(port));
 });

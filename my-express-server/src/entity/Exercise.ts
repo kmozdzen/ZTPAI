@@ -21,6 +21,6 @@ export class Exercise{
     @Column()
     instructions: string;
 
-    @OneToMany(() => Workout, (workout) => workout.exercise, {cascade: true, eager: true})
+    @OneToMany(() => Workout, (workout) => workout.exercise, {cascade: true})
     workouts : Workout[];
 }

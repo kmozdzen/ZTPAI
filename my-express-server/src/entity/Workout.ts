@@ -24,6 +24,6 @@ export class Workout{
     @ManyToOne(() => User, (user) => user.workouts, {onDelete : "CASCADE"})
     user : User;
 
-    @ManyToOne(() => Exercise, (exercise) => exercise.workouts, {onDelete : "CASCADE"})
+    @ManyToOne(() => Exercise, (exercise) => exercise.workouts, {onDelete : "CASCADE", eager: true})
     exercise : Exercise;
 }
